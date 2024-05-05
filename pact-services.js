@@ -62,6 +62,7 @@ const getNodeInfo = async (peerId) =>{
     const res = await client.local(signedTx)
     if(res.result.status=="success"){
       const txn = await client.submit(signedTx)
+      console.log("disable - "+peerId)
       console.log(txn)
     }
     else{

@@ -14,22 +14,26 @@ libp2p.addEventListener('peer:connect', (evt) => {
     console.log('Connection established to:', peerId.toString())
   })
 
+
+
+const monitor_nodes = async()=>{
 const nodeData = await getNodeInfo()
 const connectedPeers = nodeData.peers
-
-const monitor_nodes = ()=>{
   getNodes().then(nodes=>{
     const data = nodes.result.data
       data.forEach(element =>{
         const ma = multiaddr(element.multiaddr)
-        libp2p.dial(ma).then(d=>console.log(d)).catch(err=>{console.log(err)
-        
-          disableNode(element.peer_id, element.multiaddr)
-        
+        libp2p.dial(ma).then(d=>console.log(element.peer_id + ' - dial success')).catch(err=>{
+          
+          if (!connectedPeers.includes(element.peer_id)){
+            disableNode(element.peer_id, element.multiaddr)
+          }
+          else{
+            console.log(element.peer_id+ " - connected to bootstrap node")
+          }
         })
       });
   })
 }
-
 monitor_nodes()
 setInterval(monitor_nodes, 3600000)
