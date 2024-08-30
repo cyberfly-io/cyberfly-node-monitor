@@ -17,10 +17,13 @@ libp2p.addEventListener('peer:connect', (evt) => {
 
 
 const monitor_nodes = async()=>{
-const nodeData = await getNodeInfo()
-const connectedPeers = nodeData.peers
+    const nodeData = await getNodeInfo()
+    const connectedPeers = nodeData.peers
+
   getNodes().then(nodes=>{
+  
     const data = nodes.result.data
+  
       data.forEach(element =>{
         const ma = multiaddr(element.multiaddr)
         libp2p.dial(ma).then(d=>console.log(element.peer_id + ' - dial success')).catch(err=>{
