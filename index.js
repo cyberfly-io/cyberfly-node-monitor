@@ -5,7 +5,7 @@ import { getNodeInfo } from './node-services.js'
 import { multiaddr } from '@multiformats/multiaddr'
 import { disableNode } from './pact-services.js'
 
-let bootstrap_nodes = ["/dns4/node.cyberfly.io/tcp/31001/p2p/QmSbaexTeVSBTjhFwJRZpvCc7PqPs84pBHysgvWUz5DeW6"]
+let bootstrap_nodes = ["/dns4/node.cyberfly.io/tcp/31001/p2p/12D3KooWA8mwP9wGUc65abVDMuYccaAMAkXhKUqpwKUZSN5McDrw"]
 
 const libp2p = await createLibp2p(getLibp2pOptions(bootstrap_nodes))
 
