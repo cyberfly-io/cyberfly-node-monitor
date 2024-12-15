@@ -25,8 +25,9 @@ const monitor_nodes = async()=>{
     const data = nodes.result.data
   
       data.forEach(element =>{
+        console.log(`Checking ${element.peer_id}`)
         const ma = multiaddr(element.multiaddr)
-        libp2p.dial(ma).then(d=>console.log(element.peer_id + ' - dial success')).catch(err=>{
+        libp2p.dial(ma).then(d=>console.log(element.peer_id+ ` ${element.multiaddr} ` + ' - dial success')).catch(err=>{
           
           if (!connectedPeers.includes(element.peer_id)){
             disableNode(element.peer_id, element.multiaddr)
