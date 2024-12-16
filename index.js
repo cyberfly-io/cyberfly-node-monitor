@@ -19,7 +19,8 @@ libp2p.addEventListener('peer:connect', (evt) => {
 const monitor_nodes = async()=>{
     const nodeData = await getNodeInfo()
     const connectedPeers = nodeData.peers
-
+    console.log(connectedPeers)
+    
   getNodes().then(nodes=>{
   
     const data = nodes.result.data
