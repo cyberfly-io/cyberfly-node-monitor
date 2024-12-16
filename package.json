@@ -15,12 +15,13 @@
     "@kadena/client": "^1.11.0",
     "@libp2p/bootstrap": "^11.0.10",
     "@libp2p/identify": "^3.0.10",
+    "@libp2p/interface": "2.2.0",
     "@libp2p/pnet": "^2.0.16",
     "@libp2p/tcp": "^10.0.11",
     "@multiformats/multiaddr": "^12.3.4",
     "bip39": "^3.1.0",
     "dotenv": "^16.4.5",
     "ed25519-hd-key": "^1.3.0",
-    "libp2p": "2.4.2"
+    "libp2p": "2.2.0"
   }
 }

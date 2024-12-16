@@ -16,7 +16,7 @@ const swarmKey = fs.readFileSync(filePath, 'utf8')
 
 export const getLibp2pOptions = (bn)=> {
     return {
-      peerDiscovery:[bootstrap({list:bn}),
+      peerDiscovery:[bootstrap({list:bn})
       ],
       connectionProtector: preSharedKey({
         psk: Buffer.from(swarmKey)
@@ -25,12 +25,12 @@ export const getLibp2pOptions = (bn)=> {
         listen: ['/ip4/0.0.0.0/tcp/0'],
       },
       transports: [
-      tcp(),
+      tcp()
       ],
       connectionEncrypters: [noise()],
       streamMuxers: [yamux()],
       services: {
-        identify: identify(),
+        identify: identify()
       }
     }
     
