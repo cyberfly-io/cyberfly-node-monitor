@@ -10,14 +10,14 @@ let bootstrap_nodes = ["/dns4/node.cyberfly.io/tcp/31001/p2p/12D3KooWA8mwP9wGUc6
 
 const libp2p = await createLibp2p(getLibp2pOptions(bootstrap_nodes))
 let connected = 0
-libp2p.addEventListener('peer:connect', (evt) => {
+/*libp2p.addEventListener('peer:connect', (evt) => {
     const peerId = evt.detail
     console.log('Connection established to:', peerId.toString())
-  })
+  })*/
 
 const monitor_nodes = async()=>{
-    const nodeData = await getNodeInfo()
-    const connectedPeers = nodeData.peers
+    const nodeData = await getNodeInfo("https://node.cyberfly.io")
+    const connectedPeers = nodeData.peers    
     console.log(connectedPeers)
     
   getNodes().then(nodes=>{
