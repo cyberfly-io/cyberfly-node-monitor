@@ -4,6 +4,7 @@ import { getNodes } from './pact-services.js'
 import { getNodeInfo } from './node-services.js'
 import { multiaddr } from '@multiformats/multiaddr'
 import { disableNode } from './pact-services.js'
+import { peerIdFromString } from '@libp2p/peer-id'
 
 let bootstrap_nodes = ["/dns4/node.cyberfly.io/tcp/31001/p2p/12D3KooWA8mwP9wGUc65abVDMuYccaAMAkXhKUqpwKUZSN5McDrw"]
 
@@ -28,15 +29,25 @@ const monitor_nodes = async()=>{
       data.forEach(element =>{
         console.log(`Checking ${element.peer_id}`)
         const ma = multiaddr(element.multiaddr)
-        libp2p.dial(ma).then(d=>console.log(element.peer_id+ ` ${element.multiaddr} ` + ' - dial success')).catch(err=>{
+        const peerId = peerIdFromString(element.peer_id)
+        libp2p.peerRouting.findPeer(peerId, {maxTimeout:1000}).then((peerInfo)=>{
+
+          console.log(peerId)
+
+          libp2p.dial(ma).then(d=>console.log(element.peer_id+ ` ${element.multiaddr} ` + ' - dial success')).catch(err=>{
           
-          if (!connectedPeers.includes(element.peer_id)){
-            disableNode(element.peer_id, element.multiaddr)
-          }
-          else{
-            console.log(element.peer_id+ " - connected to bootstrap node")
-          }
+            if (!connectedPeers.includes(element.peer_id)){
+              console.log("disable", element.peer_id)
+            }
+            else{
+              console.log(element.peer_id+ " - connected to bootstrap node")
+            }
+          })
+        }, (error)=>{
+          console.log(element.peer_id, "not found")
+          disableNode(element.peer_id, element.multiaddr)
         })
+   
       });
   })
 }

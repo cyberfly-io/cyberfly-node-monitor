@@ -4,6 +4,8 @@ import { identify } from '@libp2p/identify'
 import { noise } from '@chainsafe/libp2p-noise'
 import { yamux } from '@chainsafe/libp2p-yamux'
 import { preSharedKey } from '@libp2p/pnet'
+import { kadDHT } from "@libp2p/kad-dht";
+
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -30,7 +32,10 @@ export const getLibp2pOptions = (bn)=> {
       connectionEncrypters: [noise()],
       streamMuxers: [yamux()],
       services: {
-        identify: identify()
+        identify: identify(),
+        dht: kadDHT({
+          clientMode: false,
+        }),
       }
     }
     
