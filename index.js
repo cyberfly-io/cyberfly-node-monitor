@@ -41,6 +41,7 @@ const monitor_nodes = async()=>{
             }
             else{
               console.log(element.peer_id, "not found")
+              console.log("muliadddr", element.multiaddr)
               disableNode(element.peer_id, element.multiaddr)
             }
            
