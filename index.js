@@ -49,8 +49,8 @@ const monitor_nodes = async()=>{
         })
    
       });
+      connected = 0
   })
 }
 monitor_nodes()
 setInterval(monitor_nodes, 3600000)
-connected = 0
