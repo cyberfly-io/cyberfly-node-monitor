@@ -53,7 +53,8 @@ const getNodeInfo = async (peerId) =>{
     .addSigner(keyPair.publicKey, (withCapability)=>[
       withCapability('free.cyberfly-account-gas-station.GAS_PAYER', 'cyberfly-account-gas', { int: 1 }, 1.0),
       withCapability('free.cyberfly_node.ADMIN_GUARD'),
-      withCapability('free.cyberfly_node.BANK_DEBIT')
+      withCapability('free.cyberfly_node.BANK_DEBIT'),
+      withCapability('free.cyberfly_node.DISABLENODE', peerId)
     ])
     .setMeta({chainId:"1",senderAccount:"cyberfly-account-gas", gasLimit:2000, gasPrice:0.0000001})
     .setNetworkId("testnet04")
