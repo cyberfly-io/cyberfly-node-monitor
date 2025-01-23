@@ -49,7 +49,7 @@ const getNodeInfo = async (peerId) =>{
 
   export const disableNode = async(peerId, multiaddr)=>{
 
-    const utxn = Pact.builder.execution(`(free.cyberfly_node.update-node-admin "${peerId}" "${multiaddr}" "inactive")`)
+    const utxn = Pact.builder.execution(`(free.cyberfly_node.disable-node-admin "${peerId}" "${multiaddr}" "inactive")`)
     .addSigner(keyPair.publicKey, (withCapability)=>[
       withCapability('free.cyberfly-account-gas-station.GAS_PAYER', 'cyberfly-account-gas', { int: 1 }, 1.0),
       withCapability('free.cyberfly_node.ADMIN_GUARD'),
