@@ -2,7 +2,7 @@ import { createClient, Pact, createSignWithKeypair } from '@kadena/client';
 import { getKeyPairsFromSeedPhrase } from './utils.js';
 import { config } from 'dotenv';
 
-const client = createClient('https://api.testnet.chainweb.com/chainweb/0.0/testnet04/chain/1/pact',)
+const client = createClient('https://api.chainweb.com/chainweb/0.0/mainnet01/chain/1/pact',)
 config();
 
 const keyPair = getKeyPairsFromSeedPhrase(process.env.SEED_PHRASE)
@@ -17,7 +17,7 @@ const getNodeInfo = async (peerId) =>{
       gasPrice: 0.0000001
     })
     // set networkId
-    .setNetworkId('testnet04')
+    .setNetworkId('mainnet01')
     // create transaction with hash
     .createTransaction();
     
@@ -37,7 +37,7 @@ const getNodeInfo = async (peerId) =>{
       gasPrice: 0.00001
     })
     // set networkId
-    .setNetworkId('testnet04')
+    .setNetworkId('mainnet01')
     // create transaction with hash
     .createTransaction();
 
@@ -57,7 +57,7 @@ const getNodeInfo = async (peerId) =>{
       withCapability('free.cyberfly_node.DISABLE_NODE', peerId)
     ])
     .setMeta({chainId:"1",senderAccount:"cyberfly-account-gas", gasLimit:2000, gasPrice:0.0000001})
-    .setNetworkId("testnet04")
+    .setNetworkId("mainnet01")
     .createTransaction();
     const  signTransaction = createSignWithKeypair({publicKey:keyPair.publicKey, secretKey:keyPair.secretKey})
     const signedTx = await signTransaction(utxn)
@@ -81,7 +81,7 @@ const getNodeInfo = async (peerId) =>{
       withCapability('free.cyberfly_token.TRANSFER', "k:f53af5c83e21316f10bdca39c9353fafdb317326f430eb4cd143bdf3faa5ba88", account, 100.0)
     ])
     .setMeta({chainId:"1",senderAccount:"cyberfly-account-gas", gasLimit:2000, gasPrice:0.0000001})
-    .setNetworkId("testnet04")
+    .setNetworkId("mainnet01")
     .createTransaction();
     const  signTransaction = createSignWithKeypair({publicKey:keyPair.publicKey, secretKey:keyPair.secretKey})
     const signedTx = await signTransaction(utxn)
@@ -105,7 +105,7 @@ const getNodeInfo = async (peerId) =>{
       withCapability('free.cyberfly_token.TRANSFER', "k:f53af5c83e21316f10bdca39c9353fafdb317326f430eb4cd143bdf3faa5ba88", account, 5000000.0)
     ])
     .setMeta({chainId:"1",senderAccount:"cyberfly-account-gas", gasLimit:2000, gasPrice:0.0000001})
-    .setNetworkId("testnet04")
+    .setNetworkId("mainnet01")
     .createTransaction();
     const  signTransaction = createSignWithKeypair({publicKey:keyPair.publicKey, secretKey:keyPair.secretKey})
     const signedTx = await signTransaction(utxn)
@@ -152,7 +152,7 @@ const getNodeInfo = async (peerId) =>{
     .addData("ks", { keys: [account.split(":")[1]], pred: 'keys-all' })
     .setMeta({chainId:"1",senderAccount:"cyberfly-account-gas", gasLimit:2000, gasPrice:0.0000001})
  
-    .setNetworkId("testnet04")
+    .setNetworkId("mainnet01")
     .createTransaction();
     const  signTransaction = createSignWithKeypair({publicKey:keyPair.publicKey, secretKey:keyPair.secretKey})
     const signedTx = await signTransaction(utxn)
